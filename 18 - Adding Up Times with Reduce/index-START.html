@@ -181,7 +181,23 @@
       Video 58
     </li>
   </ul>
+
 <script>
+  const timeNodes = [...document.querySelectorAll('[data-time]')];
+
+  const seconds = timeNodes
+                    .map(node => node.dataset.time)
+                    .map(time => {
+                      [min, sec] = time.split(':').map(parseFloat);
+                      return (min * 60) + sec;})
+                    .reduce((total, seconds) => total + seconds)
+
+  let secondsLeft = seconds;
+  const hours = Math.floor(secondsLeft / 3600);
+  secondsLeft = secondsLeft % 3600;
+
+  const mins = Math.floor(secondsLeft / 60);
+  secondsLeft = secondsLeft % 60;
 </script>
 </body>
 </html>
